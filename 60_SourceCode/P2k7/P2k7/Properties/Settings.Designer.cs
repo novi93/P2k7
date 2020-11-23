@@ -8,22 +8,158 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace P2k7.Properties
-{
-
-
+namespace P2k7.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/admin.asmx")]
+        public string P2k7_AdminWebSvc_Admin {
+            get {
+                return ((string)(this["P2k7_AdminWebSvc_Admin"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/archive.asmx")]
+        public string P2k7_ArchiveWebSvc_Archive {
+            get {
+                return ((string)(this["P2k7_ArchiveWebSvc_Archive"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/calendar.asmx")]
+        public string P2k7_CalendarWebSvc_Calendar {
+            get {
+                return ((string)(this["P2k7_CalendarWebSvc_Calendar"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/customfields.asmx")]
+        public string P2k7_CustomfieldsWebSvc_CustomFields {
+            get {
+                return ((string)(this["P2k7_CustomfieldsWebSvc_CustomFields"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/events.asmx")]
+        public string P2k7_EventsWebSvc_Events {
+            get {
+                return ((string)(this["P2k7_EventsWebSvc_Events"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/loginforms.asmx")]
+        public string P2k7_LoginformsWebSvc_LoginForms {
+            get {
+                return ((string)(this["P2k7_LoginformsWebSvc_LoginForms"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/loginwindows.asmx")]
+        public string P2k7_LoginwindowsWebSvc_LoginWindows {
+            get {
+                return ((string)(this["P2k7_LoginwindowsWebSvc_LoginWindows"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/Lookuptable.asmx")]
+        public string P2k7_LookuptableWebSvc_LookupTable {
+            get {
+                return ((string)(this["P2k7_LookuptableWebSvc_LookupTable"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/project.asmx")]
+        public string P2k7_ProjectWebSvc_Project {
+            get {
+                return ((string)(this["P2k7_ProjectWebSvc_Project"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/queuesystem.asmx")]
+        public string P2k7_QueuesystemWebSvc_QueueSystem {
+            get {
+                return ((string)(this["P2k7_QueuesystemWebSvc_QueueSystem"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/resource.asmx")]
+        public string P2k7_ResourceWebSvc_Resource {
+            get {
+                return ((string)(this["P2k7_ResourceWebSvc_Resource"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/security.asmx")]
+        public string P2k7_SecurityWebSvc_Security {
+            get {
+                return ((string)(this["P2k7_SecurityWebSvc_Security"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/statusing.asmx")]
+        public string P2k7_StatusingWebSvc_Statusing {
+            get {
+                return ((string)(this["P2k7_StatusingWebSvc_Statusing"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://projects.fujinet.vn/_vti_bin/psi/timesheet.asmx")]
+        public string P2k7_TimesheetWebSvc_TimeSheet {
+            get {
+                return ((string)(this["P2k7_TimesheetWebSvc_TimeSheet"]));
             }
         }
     }

@@ -40,7 +40,7 @@
       <HintPath>..\packages\AutoMapper.Extensions.Microsoft.DependencyInjection.8.1.0\lib\netstandard2.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+      <HintPath>..\packages\MaterialSkin.Net4.1.0.0\lib\net40\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -75,6 +75,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.Official.2.9.1\lib\net20\ObjectListView.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -84,6 +87,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -94,9 +98,12 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -108,15 +115,118 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Readme.md" />
+    <Compile Include="Data\ProjectRepository.cs" />
+    <Compile Include="Entities\ProjectInfo.cs" />
     <Compile Include="MappingProfile.cs" />
-    <Compile Include="View\FrmMain.cs">
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="MySettings.cs" />
+    <Compile Include="Utils\AdminDerived.cs" />
+    <Compile Include="Utils\ArchiveDerived.cs" />
+    <Compile Include="Utils\CalenderDerived.cs" />
+    <Compile Include="Utils\CustomFieldsDerived.cs" />
+    <Compile Include="Utils\EventsDerived.cs" />
+    <Compile Include="Utils\LoginFormsDerived.cs" />
+    <Compile Include="Utils\LoginWindowsDerived.cs" />
+    <Compile Include="Utils\LookUpTableDerived.cs" />
+    <Compile Include="Utils\ProjectDerived.cs" />
+    <Compile Include="Utils\QueueSystemDerived.cs" />
+    <Compile Include="Utils\ResourceDerived.cs" />
+    <Compile Include="Utils\SecurityDerived.cs" />
+    <Compile Include="Utils\StatusingDerived.cs" />
+    <Compile Include="Utils\TimesheetDerived.cs" />
+    <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="ViewModel\ProjectVM.cs" />
+    <Compile Include="View\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="View\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.cs" />
+    <Compile Include="View\FrmReportActual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmReportActual.Designer.cs">
+      <DependentUpon>FrmReportActual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmProject.Designer.cs">
+      <DependentUpon>FrmProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\AdminWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ArchiveWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\CalendarWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\CustomfieldsWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\EventsWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LoginformsWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LoginwindowsWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LookuptableWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ProjectWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\QueuesystemWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ResourceWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SecurityWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\StatusingWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\TimesheetWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -126,6 +236,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmReportActual.resx">
+      <DependentUpon>FrmReportActual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmProject.resx">
+      <DependentUpon>FrmProject.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,14 +255,425 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Utils\CleanCache.cmd" />
+    <None Include="Web References\AdminWebSvc\admin.wsdl" />
+    <None Include="Web References\AdminWebSvc\ADSyncERPSettings.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AdminWebSvc\ADSyncGroupSettings.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AdminWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AdminWebSvc\StatusingSettingsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AdminWebSvc\TimePeriodDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AdminWebSvc\TimesheetAuditExportDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AdminWebSvc\TimesheetLineClassDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\AdminWebSvc\UnsubmittedTimesheetDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ArchiveWebSvc\archive.wsdl" />
+    <None Include="Web References\ArchiveWebSvc\ArchivedProjectsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ArchiveWebSvc\ArchiveScheduleDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ArchiveWebSvc\ProjectArchiveRetentionDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ArchiveWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CalendarWebSvc\calendar.wsdl" />
+    <None Include="Web References\CalendarWebSvc\CalendarDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\CalendarWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CustomfieldsWebSvc\CustomFieldDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\CustomfieldsWebSvc\customfields.wsdl" />
+    <None Include="Web References\CustomfieldsWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\EventsWebSvc\EventHandlersDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EventsWebSvc\events.wsdl" />
+    <None Include="Web References\EventsWebSvc\EventsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EventsWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LoginformsWebSvc\loginforms.wsdl" />
+    <None Include="Web References\LoginformsWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LoginwindowsWebSvc\loginwindows.wsdl" />
+    <None Include="Web References\LoginwindowsWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LookuptableWebSvc\Lookuptable.wsdl" />
+    <None Include="Web References\LookuptableWebSvc\LookupTableDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LookuptableWebSvc\LookupTableMultiLangDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LookuptableWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ProjectWebSvc\project.wsdl" />
+    <None Include="Web References\ProjectWebSvc\ProjectContextDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ProjectWebSvc\ProjectDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ProjectWebSvc\ProjectRelationsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ProjectWebSvc\ProjectTeamDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ProjectWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\QueuesystemWebSvc\JobState.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\QueuesystemWebSvc\QueueStatusDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\QueuesystemWebSvc\QueueStatusRequestDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\QueuesystemWebSvc\queuesystem.wsdl" />
+    <None Include="Web References\QueuesystemWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ResourceWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ResourceWebSvc\resource.wsdl" />
+    <None Include="Web References\ResourceWebSvc\ResourceAssignmentDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ResourceWebSvc\ResourceAuthorizationDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ResourceWebSvc\ResourceDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SecurityWebSvc\PermissionDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SecurityWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SecurityWebSvc\security.wsdl" />
+    <None Include="Web References\SecurityWebSvc\SecurityCategoriesDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SecurityWebSvc\SecurityGroupsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SecurityWebSvc\SecurityOrganizationalPermissionsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SecurityWebSvc\SecurityTemplatesDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\AssnHistoryDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\DelegationDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\ImportTimesheetDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\ProjectDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\StatusingWebSvc\ScheduleDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\StatusApprovalDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\StatusApprovalTransactionDetailsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\statusing.wsdl" />
+    <None Include="Web References\StatusingWebSvc\StatusingAssignmentsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\StatusingDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\StatusingTimephasedActualsDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\StatusTransactionDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\StatusingWebSvc\SummaryTaskPathDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\TimesheetWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\TimesheetWebSvc\ResourceDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\TimesheetWebSvc\timesheet.wsdl" />
+    <None Include="Web References\TimesheetWebSvc\TimesheetDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\TimesheetWebSvc\TimesheetListDataSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
-    <Folder Include="Entities\" />
-    <Folder Include="ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/admin.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AdminWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/admin.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_AdminWebSvc_Admin</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/archive.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ArchiveWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/archive.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_ArchiveWebSvc_Archive</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/calendar.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CalendarWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/calendar.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_CalendarWebSvc_Calendar</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/customfields.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CustomfieldsWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/customfields.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_CustomfieldsWebSvc_CustomFields</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/events.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\EventsWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/events.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_EventsWebSvc_Events</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/loginforms.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LoginformsWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/loginforms.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_LoginformsWebSvc_LoginForms</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/loginwindows.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LoginwindowsWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/loginwindows.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_LoginwindowsWebSvc_LoginWindows</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/Lookuptable.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LookuptableWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/Lookuptable.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_LookuptableWebSvc_LookupTable</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/project.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ProjectWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/project.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_ProjectWebSvc_Project</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/queuesystem.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\QueuesystemWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/queuesystem.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_QueuesystemWebSvc_QueueSystem</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/resource.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ResourceWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/resource.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_ResourceWebSvc_Resource</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/security.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SecurityWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/security.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_SecurityWebSvc_Security</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/statusing.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\StatusingWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/statusing.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_StatusingWebSvc_Statusing</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://projects.fujinet.vn/pwa/_vti_bin/psi/timesheet.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\TimesheetWebSvc\</RelPath>
+      <UpdateFromURL>https://projects.fujinet.vn/pwa/_vti_bin/psi/timesheet.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>P2k7_TimesheetWebSvc_TimeSheet</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\AdminWebSvc\admin.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ArchiveWebSvc\archive.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\CalendarWebSvc\calendar.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\CustomfieldsWebSvc\customfields.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\EventsWebSvc\events.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\LoginformsWebSvc\loginforms.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\LoginwindowsWebSvc\loginwindows.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\LookuptableWebSvc\Lookuptable.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ProjectWebSvc\project.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\QueuesystemWebSvc\queuesystem.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ResourceWebSvc\resource.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\SecurityWebSvc\security.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\StatusingWebSvc\statusing.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\TimesheetWebSvc\timesheet.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
