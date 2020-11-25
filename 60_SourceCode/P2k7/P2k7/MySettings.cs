@@ -5,7 +5,7 @@ namespace P2k7
     public class MySettings : ApplicationSettingsBase
     {
         [UserScopedSetting()]
-        [DefaultSettingValueAttribute("http://LocalHost/PWA/")]
+        [DefaultSettingValueAttribute("https://projects.fujinet.vn/pwa")]
         public string ProjectServerURL
         {
             get { return (string)this["ProjectServerURL"]; }

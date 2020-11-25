@@ -1,7 +1,4 @@
-﻿using MaterialSkin;
-using MaterialSkin.Controls;
-using P2k7.Data;
-using P2k7.ViewModel;
+﻿using P2k7.ViewModel;
 using System;
 using System.Web.Services.Protocols;
 using System.Windows.Forms;
@@ -19,6 +16,11 @@ namespace P2k7.View
             VM = LoginVM;
 
             BindingModel();
+
+            VM.LoginRepo.ClearImpersonation();
+            VM.mySettings.loginStatus = 1;
+
+
         }
 
         private void BindingModel()

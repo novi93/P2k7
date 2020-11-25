@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using P2k7.Core.Behavior;
 using P2k7.Data;
 using P2k7.Model;
 using P2k7.View;
@@ -39,7 +40,7 @@ namespace P2k7
             {
                 using (ServiceProvider serviceProvider = services.BuildServiceProvider())
                 {
-                    var FrmStartup = serviceProvider.GetRequiredService<FrmProject>();
+                    var FrmStartup = serviceProvider.GetRequiredService<FrmReportActual>();
                     Application.Run(FrmStartup);
                 }
             }
@@ -51,15 +52,20 @@ namespace P2k7
         }
         static void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<FrmMain>();
             services.AddTransient<FrmLogin>();
-            services.AddTransient<FrmProject>();
             services.AddTransient<LoginVM>();
-            services.AddTransient<ProjectVM>();
             services.AddTransient<LoginModel>();
+
+            services.AddTransient<FrmProject>();
+            services.AddTransient<ProjectVM>();
+
+            services.AddTransient<FrmReportActual>();
+            services.AddTransient<ReportActualVM>();
+            services.AddTransient<ReportActualModel>();
+            services.AddTransient<FjsSumaryEffortBehabior>();
+
             services.AddSingleton<MySettings>();
             services.AddSingleton<ProjectRepository>();
-
 
             // auto mapper
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -98,7 +98,7 @@ namespace P2k7.View
                 //Splash.SetStatus("Logon successful, getting the projects...");
                 System.Threading.Thread.Sleep(1000);  // Sleep only here.
 
-                string version = VM.ProjectServerVersion();
+                string version = VM.LoginRepo.ProjectServerVersion();
 
                 if (version.StartsWith("Error"))
                 {
@@ -138,9 +138,9 @@ namespace P2k7.View
                 {
                     if (dgProjList.Rows[row].Selected == true)
                     {
-                        var project = new ProjectInfo ();
+                        var project = new ProjectInfo();
 
-                            project.projectGuid = new Guid(dgProjList.Rows[row].Cells[0].Value.ToString());
+                        project.projectGuid = new Guid(dgProjList.Rows[row].Cells[0].Value.ToString());
                         //todo
                         //ProjectDetails frmProjectDetails = new ProjectDetails();
                         //frmProjectDetails.ShowDialog();

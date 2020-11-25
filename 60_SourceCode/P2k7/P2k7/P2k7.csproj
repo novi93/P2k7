@@ -39,6 +39,27 @@
     <Reference Include="AutoMapper.Extensions.Microsoft.DependencyInjection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=e767ac9c89543656, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.Extensions.Microsoft.DependencyInjection.8.1.0\lib\netstandard2.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\dll\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\dll\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FJN_Common">
+      <HintPath>..\..\dll\FJN_Common.dll</HintPath>
+    </Reference>
+    <Reference Include="FJN_DB_MySQL">
+      <HintPath>..\..\dll\FJN_DB_MySQL.dll</HintPath>
+    </Reference>
+    <Reference Include="FJN_DB_SQLServer">
+      <HintPath>..\..\dll\FJN_DB_SQLServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FJN_Security">
+      <HintPath>..\..\dll\FJN_Security.dll</HintPath>
+    </Reference>
+    <Reference Include="FujinetWMSDLL">
+      <HintPath>..\..\dll\FujinetWMSDLL.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.Net4.1.0.0\lib\net40\MaterialSkin.dll</HintPath>
     </Reference>
@@ -72,6 +93,7 @@
     <Reference Include="Microsoft.Office.Project.Shared, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Project.Server.1.0.2\lib\net40\Microsoft.Office.Project.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -116,10 +138,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Readme.md" />
+    <Compile Include="Core\Behavior\FjsSumaryEffortBehabior.cs" />
+    <Compile Include="Core\Extension\IEnumerableExtension.cs" />
     <Compile Include="Data\ProjectRepository.cs" />
     <Compile Include="Entities\ProjectInfo.cs" />
+    <Compile Include="Entities\ReportActualDetail.cs" />
+    <Compile Include="Entities\Structs\subProjectPhaseInfo.cs" />
+    <Compile Include="Entities\Structs\subProjectInfo.cs" />
+    <Compile Include="Entities\Structs\subProjectStaffInfo.cs" />
+    <Compile Include="Entities\Enum.cs" />
     <Compile Include="MappingProfile.cs" />
+    <Compile Include="Model\ActualData.cs" />
+    <Compile Include="Model\ScreenModeEnum.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\ReportActualModel.cs" />
     <Compile Include="MySettings.cs" />
     <Compile Include="Utils\AdminDerived.cs" />
     <Compile Include="Utils\ArchiveDerived.cs" />
@@ -137,6 +169,7 @@
     <Compile Include="Utils\TimesheetDerived.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\ProjectVM.cs" />
+    <Compile Include="ViewModel\ReportActualVM.cs" />
     <Compile Include="View\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,9 +501,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

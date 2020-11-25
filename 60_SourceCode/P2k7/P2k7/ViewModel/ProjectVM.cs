@@ -32,38 +32,7 @@ namespace P2k7.ViewModel
 
             //Application.DoEvents();
         }
-        public string ProjectServerVersion()
-        {
-            string major, minor, build, revision;
-            string version = string.Empty;
-
-            try
-            {
-                DataSet dsInfo = LoginRepo.admin.ReadServerVersion();
-
-                DataRow row = dsInfo.Tables["ServerVersion"].Rows[0];
-                major = row["WADMIN_VERSION_MAJOR"].ToString();
-                minor = row["WADMIN_VERSION_MINOR"].ToString();
-                build = row["WADMIN_VERSION_BUILD"].ToString();
-                revision = row["WADMIN_VERSION_REVISION"].ToString();
-
-                build = build.Insert(build.Length - 4, ".");
-
-                version = major + "." +
-                    minor + "." +
-                    build + ", rev. " +
-                    revision;
-            }
-            catch (SoapException ex)
-            {
-                version = "Error - SOAP exception in ProjectServerVersion." + "\n\n" + ex.Message.ToString();
-            }
-            catch (WebException ex)
-            {
-                version = "Error - Web Exception in ProjectServerVersion" + "\n\n" + ex.Message.ToString();
-            }
-            return version;
-        }
+  
 
         public void ReadProjectsList()
         {

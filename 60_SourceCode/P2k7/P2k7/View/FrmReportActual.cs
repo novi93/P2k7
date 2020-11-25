@@ -9,26 +9,32 @@ namespace P2k7.View
 {
     public partial class FrmReportActual : Form
     {
-        public FrmReportActual(ProjectVM projectVM, ProjectRepository loginRepo, FrmLogin frmLogin)
+        public FrmReportActual(ReportActualVM VM, ProjectRepository loginRepo, FrmLogin frmLogin)
         {
             InitializeComponent();
-            this.VM = projectVM; ;
+            this.VM = VM; ;
             this.LoginRepo = loginRepo;
             this.frmLogin = frmLogin;
             this.binding();
+            
+            tlvMain.KeyAspectName = "Id";
+            tlvMain.ParentKeyAspectName = "ParentId";
+            tlvMain.RootKeyValue = 0;
         }
 
         private void binding()
         {
-            //txtProjectServerUrl.DataBindings.Add(new Binding("Text", VM.Model, "ProjectServerUrl"));
+            ////txtProjectServerUrl.DataBindings.Add(new Binding("Text", VM.Model, "ProjectServerUrl"));
             ssVersion.DataBindings.Add(new Binding("Text", VM, "ssVersion"));
-            lblStatus.DataBindings.Add(new Binding("Text", VM, "lblStatus"));
+            //lblStatus.DataBindings.Add(new Binding("Text", VM, "lblStatus"));
             tsUserName.DataBindings.Add(new Binding("Text", VM, "tsUserName"));
-            dgProjList.DataSource = VM.SourcedgProjList;
+            datFrom.DataBindings.Add(new Binding("Value", VM.Model, "DateFrom"));
+            datTo.DataBindings.Add(new Binding("Value", VM.Model, "DateTo"));
+            tlvMain.DataSource = VM.SourcedTree;
 
         }
 
-        public ProjectVM VM { get; }
+        public ReportActualVM VM { get; }
         public ProjectRepository LoginRepo { get; }
         public FrmLogin frmLogin { get; }
 
@@ -98,7 +104,7 @@ namespace P2k7.View
                 //Splash.SetStatus("Logon successful, getting the projects...");
                 System.Threading.Thread.Sleep(1000);  // Sleep only here.
 
-                string version = VM.ProjectServerVersion();
+                string version = VM.Repo.ProjectServerVersion();
 
                 if (version.StartsWith("Error"))
                 {
@@ -109,122 +115,127 @@ namespace P2k7.View
                 {
                     VM.ssVersion = "Project Server version: " + version;
                 }
-                VM.ReadProjectsList();
+                //VM.ReadProjectsList();
             }
         }
 
-        private void tsRefresh_Click(object sender, EventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-                VM.ReadProjectsList();
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message, Application.ProductName);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
+            VM.ShowReport();
         }
 
-        private void ShowProjectDetails()
-        {
-            if (dgProjList.SelectedRows.Count > 0)
-            {
-                for (int row = 0; row < dgProjList.RowCount; row++)
-                {
-                    if (dgProjList.Rows[row].Selected == true)
-                    {
-                        var project = new ProjectInfo ();
+        //private void tsRefresh_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        this.Cursor = Cursors.WaitCursor;
+        //        VM.ReadProjectsList();
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        MessageBox.Show(Ex.Message, Application.ProductName);
+        //    }
+        //    finally
+        //    {
+        //        this.Cursor = Cursors.Default;
+        //    }
+        //}
 
-                            project.projectGuid = new Guid(dgProjList.Rows[row].Cells[0].Value.ToString());
-                        //todo
-                        //ProjectDetails frmProjectDetails = new ProjectDetails();
-                        //frmProjectDetails.ShowDialog();
-                    }
-                }
-            }
-            else
-            {
-                VM.WriteLog("No project(s) is selected");
-            }
-            VM.ReadProjectsList();
-        }
+        //private void ShowProjectDetails()
+        //{
+        //    if (dgProjList.SelectedRows.Count > 0)
+        //    {
+        //        for (int row = 0; row < dgProjList.RowCount; row++)
+        //        {
+        //            if (dgProjList.Rows[row].Selected == true)
+        //            {
+        //                var project = new ProjectInfo ();
 
-        private void tsProjectDetails_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-                ShowProjectDetails();
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message, Application.ProductName);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
+        //                    project.projectGuid = new Guid(dgProjList.Rows[row].Cells[0].Value.ToString());
+        //                //todo
+        //                //ProjectDetails frmProjectDetails = new ProjectDetails();
+        //                //frmProjectDetails.ShowDialog();
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        VM.WriteLog("No project(s) is selected");
+        //    }
+        //    VM.ReadProjectsList();
+        //}
 
-        protected override void OnPaint(PaintEventArgs paintEvnt)
-        {
-            Pen myPen = new System.Drawing.Pen(Color.Black, 2);
-            Graphics formGraphics = this.CreateGraphics();
-            formGraphics.DrawLine(myPen, 0, 30, this.Width, 30);
-            myPen.Dispose();
-            formGraphics.Dispose();
-        }
+        //private void tsProjectDetails_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        this.Cursor = Cursors.WaitCursor;
+        //        ShowProjectDetails();
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        MessageBox.Show(Ex.Message, Application.ProductName);
+        //    }
+        //    finally
+        //    {
+        //        this.Cursor = Cursors.Default;
+        //    }
+        //}
 
-        private void dgProjList_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            if (e.Column.ReadOnly == true)
-            {
-                e.Column.DefaultCellStyle.BackColor = Color.LightGray;
-            }
-            else
-            {
-                e.Column.DefaultCellStyle.BackColor = Color.White;
-            }
-        }
+        //protected override void OnPaint(PaintEventArgs paintEvnt)
+        //{
+        //    Pen myPen = new System.Drawing.Pen(Color.Black, 2);
+        //    Graphics formGraphics = this.CreateGraphics();
+        //    formGraphics.DrawLine(myPen, 0, 30, this.Width, 30);
+        //    myPen.Dispose();
+        //    formGraphics.Dispose();
+        //}
 
-        private void dgProjList_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                try
-                {
-                    System.Windows.Forms.DataGridView.HitTestInfo myHitTest;
-                    myHitTest = this.dgProjList.HitTest(e.X, e.Y);
-                    this.dgProjList.CurrentCell = this.dgProjList.Rows[myHitTest.RowIndex].Cells[myHitTest.ColumnIndex];
-                    Clipboard.SetText(dgProjList.CurrentCell.Value.ToString());
-                }
-                catch
-                {
+        //private void dgProjList_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        //{
+        //    if (e.Column.ReadOnly == true)
+        //    {
+        //        e.Column.DefaultCellStyle.BackColor = Color.LightGray;
+        //    }
+        //    else
+        //    {
+        //        e.Column.DefaultCellStyle.BackColor = Color.White;
+        //    }
+        //}
 
-                }
-            }
-        }
+        //private void dgProjList_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Right)
+        //    {
+        //        try
+        //        {
+        //            System.Windows.Forms.DataGridView.HitTestInfo myHitTest;
+        //            myHitTest = this.dgProjList.HitTest(e.X, e.Y);
+        //            this.dgProjList.CurrentCell = this.dgProjList.Rows[myHitTest.RowIndex].Cells[myHitTest.ColumnIndex];
+        //            Clipboard.SetText(dgProjList.CurrentCell.Value.ToString());
+        //        }
+        //        catch
+        //        {
 
-        private void dgProjList_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-                ShowProjectDetails();
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message, Application.ProductName);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
+        //        }
+        //    }
+        //}
+
+        //private void dgProjList_MouseDoubleClick(object sender, MouseEventArgs e)
+        //{
+        //    try
+        //    {
+        //        this.Cursor = Cursors.WaitCursor;
+        //        ShowProjectDetails();
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        MessageBox.Show(Ex.Message, Application.ProductName);
+        //    }
+        //    finally
+        //    {
+        //        this.Cursor = Cursors.Default;
+        //    }
+        //}
     } // class
 } // namesoace

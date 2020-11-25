@@ -12,6 +12,7 @@ namespace P2k7.ViewModel
             this.Model = model;
             this.mySettings = mySettings;
             this.LoginRepo = LoginRepo;
+            Model.ProjectServerUrl = mySettings.ProjectServerURL;
         }
 
         public ProjectRepository LoginRepo { get; }

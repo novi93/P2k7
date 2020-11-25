@@ -1,7 +1,10 @@
-﻿using P2k7.Utils;
+﻿using P2k7.ProjectWebSvc;
+using P2k7.Utils;
 using System;
+using System.Data;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Web.Services.Protocols;
 
 namespace P2k7.Data
 {
@@ -104,8 +107,26 @@ namespace P2k7.Data
             }
             catch (Exception ex)
             {
-               return false;
+                return false;
             }
+        }
+
+        internal object test(Guid projectGuid, DataStoreEnum dataStoreEnum)
+        {
+            var prjEntity1 = project.ReadProjectEntities(new Guid("5ef266ec-9b12-4d14-a625-5fbc7e58a55d"),4,DataStoreEnum.PublishedStore);
+
+            var custome =  customFields.ReadCustomFields("",false);
+            var lookup =  lookupTable.ReadLookupTables("",false,0);
+            var res=  resource.ReadResources("",false);
+            var prjEntity2 = project.ReadProjectEntities(new Guid("5ef266ec-9b12-4d14-a625-5fbc7e58a55d"),74,DataStoreEnum.PublishedStore);
+
+
+            return null;
+        }
+
+        internal ProjectDataSet ReadProject(Guid projectGuid, DataStoreEnum dataStoreEnum)
+        {
+            return project.ReadProject(projectGuid,(ProjectWebSvc.DataStoreEnum)dataStoreEnum);
         }
 
         public string SetPortforImpersonation(string psUrl)
@@ -189,26 +210,26 @@ namespace P2k7.Data
             mySettings.isImpersonated = false;
         }
 
-                public  string SetPortforForms(string psUrl)
+        public string SetPortforForms(string psUrl)
         {
             Uri ServerUri = new Uri(psUrl);
             if (ServerUri.Port != mySettings.FormsPort)
             {
                 if (ServerUri.Port == 80)
                 {
-                    psUrl = Regex.Replace(psUrl, ServerUri.Authority, ServerUri.Host + ":" 
+                    psUrl = Regex.Replace(psUrl, ServerUri.Authority, ServerUri.Host + ":"
                         + mySettings.FormsPort, RegexOptions.IgnoreCase);
                 }
                 else
                 {
-                    psUrl = Regex.Replace(psUrl, ":" + ServerUri.Port, ":" 
+                    psUrl = Regex.Replace(psUrl, ":" + ServerUri.Port, ":"
                         + mySettings.FormsPort, RegexOptions.IgnoreCase);
                 }
             }
             return AppendToUrl(psUrl);
         }
 
-        public  string SetPortforWindows(string psUrl)
+        public string SetPortforWindows(string psUrl)
         {
             Uri ServerUri = new Uri(psUrl);
             if (ServerUri.Port != mySettings.WindowsPort)
@@ -223,6 +244,39 @@ namespace P2k7.Data
                 }
             }
             return AppendToUrl(psUrl);
+        }
+
+        public string ProjectServerVersion()
+        {
+            string major, minor, build, revision;
+            string version = string.Empty;
+
+            try
+            {
+                DataSet dsInfo = admin.ReadServerVersion();
+
+                DataRow row = dsInfo.Tables["ServerVersion"].Rows[0];
+                major = row["WADMIN_VERSION_MAJOR"].ToString();
+                minor = row["WADMIN_VERSION_MINOR"].ToString();
+                build = row["WADMIN_VERSION_BUILD"].ToString();
+                revision = row["WADMIN_VERSION_REVISION"].ToString();
+
+                build = build.Insert(build.Length - 4, ".");
+
+                version = major + "." +
+                    minor + "." +
+                    build + ", rev. " +
+                    revision;
+            }
+            catch (SoapException ex)
+            {
+                version = "Error - SOAP exception in ProjectServerVersion." + "\n\n" + ex.Message.ToString();
+            }
+            catch (WebException ex)
+            {
+                version = "Error - Web Exception in ProjectServerVersion" + "\n\n" + ex.Message.ToString();
+            }
+            return version;
         }
 
     }
