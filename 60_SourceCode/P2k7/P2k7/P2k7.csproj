@@ -138,7 +138,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Readme.md" />
+    <Compile Include="Core\Behavior\cls_CM_Document.cs" />
+    <Compile Include="Core\Behavior\cls_CM_ProjectDocuments.cs" />
+    <Compile Include="Core\Behavior\cls_CM_Function.cs" />
+    <Compile Include="Core\Behavior\cls_CM_Master.cs" />
+    <Compile Include="Core\Behavior\cls_CM_Project.cs" />
+    <Compile Include="Core\Behavior\cls_CM_ProjectSchedule2007.cs" />
+    <Compile Include="Core\Behavior\cls_DB_Master.cs" />
+    <Compile Include="Core\Behavior\DB_SQLServer\cls_CM_ResourceOnServer2007.cs" />
+    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_Access.cs" />
+    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_Dynaset.cs" />
+    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_ParameterCollection.cs" />
+    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_ProjectSchedule.cs" />
+    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_ProjectSchedule2007.cs" />
     <Compile Include="Core\Behavior\FjsSumaryEffortBehabior.cs" />
+    <Compile Include="Core\Behavior\mod_WMS_Declare.cs" />
+    <Compile Include="Core\Behavior\StringUtil.cs" />
     <Compile Include="Core\Extension\IEnumerableExtension.cs" />
     <Compile Include="Data\ProjectRepository.cs" />
     <Compile Include="Entities\ProjectInfo.cs" />
@@ -147,6 +162,7 @@
     <Compile Include="Entities\Structs\subProjectInfo.cs" />
     <Compile Include="Entities\Structs\subProjectStaffInfo.cs" />
     <Compile Include="Entities\Enum.cs" />
+    <Compile Include="Entities\Structs\Task2007Info.cs" />
     <Compile Include="MappingProfile.cs" />
     <Compile Include="Model\ActualData.cs" />
     <Compile Include="Model\ScreenModeEnum.cs" />

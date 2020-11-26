@@ -1,5 +1,5 @@
-﻿using FujinetWMSDLL;
-using FujinetWMSDLL.Common;
+﻿//using FujinetWMSDLL;
+//using FujinetWMSDLL.Common;
 using P2k7.Core.Behavior;
 using P2k7.Core.Extension;
 using P2k7.Data;
@@ -128,12 +128,14 @@ namespace P2k7.ViewModel
             var scheduleList = FjsSumaryEffortBehabior.LoadProjectScheduleList(project);
 
 
-            var selectedscheduleList = scheduleList[3];
-            var rs = FjsSumaryEffortBehabior.SummaryEffort_ItemClick(selectedscheduleList,startDate,endDate);
+            //var selectedscheduleList = scheduleList[3];
+            var project2007 = new cls_CM_ProjectSchedule2007();
+            project2007.ID = new Guid("59f00468-145a-4d16-afa1-42e415237bf3");
+            var rs = FjsSumaryEffortBehabior.SummaryEffort_ItemClick(project2007,startDate,endDate);
 
             var i = 1;
             i = 9;
-            //SourcedTree.DataSource = d;
+            SourcedTree.DataSource = rs;
         }
 
         private ProjectWebSvc.ProjectDataSet GetPrj()

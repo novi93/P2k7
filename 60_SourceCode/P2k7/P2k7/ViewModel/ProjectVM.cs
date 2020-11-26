@@ -25,7 +25,6 @@ namespace P2k7.ViewModel
         //public DataView dgProjListDataSource { get; private set; }
         public BindingSource  SourcedgProjList { get; internal set; }
 
-
         public void WriteLog(string LogString)
         {
             lblStatus = LogString + "\r\n" + lblStatus;
