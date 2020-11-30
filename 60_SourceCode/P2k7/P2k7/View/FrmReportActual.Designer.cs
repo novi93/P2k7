@@ -58,6 +58,9 @@
             // 
             // tlvMain
             // 
+            this.tlvMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tlvMain.CellEditUseWholeCell = false;
             this.tlvMain.DataSource = null;
             this.tlvMain.HideSelection = false;
@@ -66,7 +69,7 @@
             this.tlvMain.RootKeyValueString = "";
             this.tlvMain.ShowGroups = false;
             this.tlvMain.Size = new System.Drawing.Size(909, 434);
-            this.tlvMain.TabIndex = 0;
+            this.tlvMain.TabIndex = 16;
             this.tlvMain.UseCompatibleStateImageBehavior = false;
             this.tlvMain.View = System.Windows.Forms.View.Details;
             this.tlvMain.VirtualMode = true;
@@ -161,12 +164,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(933, 512);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlBody);
             this.Font = new System.Drawing.Font("MS UI Gothic", 9.75F);
             this.Name = "FrmReportActual";
-            this.Text = "P2k7";
+            this.Text = "iForn";
             this.Load += new System.EventHandler(this.FrmProject_Load);
             this.pnlBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tlvMain)).EndInit();

@@ -1,4 +1,6 @@
-﻿namespace P2k7.Model
+﻿using P2k7.Entities.Enum;
+
+namespace P2k7.Model
 {
     public class LoginModel
     {
@@ -15,9 +17,5 @@
         }
     }
 
-    public enum LoginMode
-    {
-        WindowsAuth,
-        FormAuth
-    }
+
 }

@@ -20,12 +20,10 @@ namespace P2k7.View
 
         private void binding()
         {
-            //txtProjectServerUrl.DataBindings.Add(new Binding("Text", VM.Model, "ProjectServerUrl"));
             ssVersion.DataBindings.Add(new Binding("Text", VM, "ssVersion"));
             lblStatus.DataBindings.Add(new Binding("Text", VM, "lblStatus"));
             tsUserName.DataBindings.Add(new Binding("Text", VM, "tsUserName"));
             dgProjList.DataSource = VM.SourcedgProjList;
-
         }
 
         public ProjectVM VM { get; }
@@ -64,38 +62,21 @@ namespace P2k7.View
             if (VM.MySettings.AutoLogin)
             {
                 VM.MySettings.ProjectServerURL = VM.MySettings.ProjectServerURL;
-                //if (MySettings.IsWindowsAuth)
-                //{
-                //    MySettings.IsWindowsAuth = true;
-                //}
-                //else
-                //{
-                //    MySettings.IsWindowsAuth = false;
-                //    MySettings.UserName = MySettings.UserName;
-                //    MySettings.PassWord = MySettings.PassWord;
-                //}
-                LoginRepo.P12Login();
+                           LoginRepo.P12Login();
             }
             else
             {
-                //Login frmLogin = new Login();
-                //if (Splash.GetSplashForm != null)
-                //{
-                //    Splash.GetSplashForm.Owner = this;
-                //}
+             
                 this.Activate();
-                //Splash.CloseForm();
 
                 frmLogin.ShowDialog();
             }
             if (VM.MySettings.loginStatus == 1)
             {
-                //MessageBox.Show("It's Okay to Not Be Okay =))");
                 Application.Exit();
             }
             else
             {
-                //Splash.SetStatus("Logon successful, getting the projects...");
                 System.Threading.Thread.Sleep(1000);  // Sleep only here.
 
                 string version = VM.LoginRepo.ProjectServerVersion();
@@ -141,9 +122,7 @@ namespace P2k7.View
                         var project = new ProjectInfo();
 
                         project.projectGuid = new Guid(dgProjList.Rows[row].Cells[0].Value.ToString());
-                        //todo
-                        //ProjectDetails frmProjectDetails = new ProjectDetails();
-                        //frmProjectDetails.ShowDialog();
+
                     }
                 }
             }

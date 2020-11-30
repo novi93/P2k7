@@ -22,6 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\Debug\P2k7.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,21 +46,6 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\..\dll\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="FJN_Common">
-      <HintPath>..\..\dll\FJN_Common.dll</HintPath>
-    </Reference>
-    <Reference Include="FJN_DB_MySQL">
-      <HintPath>..\..\dll\FJN_DB_MySQL.dll</HintPath>
-    </Reference>
-    <Reference Include="FJN_DB_SQLServer">
-      <HintPath>..\..\dll\FJN_DB_SQLServer.dll</HintPath>
-    </Reference>
-    <Reference Include="FJN_Security">
-      <HintPath>..\..\dll\FJN_Security.dll</HintPath>
-    </Reference>
-    <Reference Include="FujinetWMSDLL">
-      <HintPath>..\..\dll\FujinetWMSDLL.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.Net4.1.0.0\lib\net40\MaterialSkin.dll</HintPath>
@@ -109,6 +96,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
@@ -135,37 +123,25 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Readme.md" />
-    <Compile Include="Core\Behavior\cls_CM_Document.cs" />
-    <Compile Include="Core\Behavior\cls_CM_ProjectDocuments.cs" />
-    <Compile Include="Core\Behavior\cls_CM_Function.cs" />
-    <Compile Include="Core\Behavior\cls_CM_Master.cs" />
-    <Compile Include="Core\Behavior\cls_CM_Project.cs" />
-    <Compile Include="Core\Behavior\cls_CM_ProjectSchedule2007.cs" />
-    <Compile Include="Core\Behavior\cls_DB_Master.cs" />
-    <Compile Include="Core\Behavior\DB_SQLServer\cls_CM_ResourceOnServer2007.cs" />
-    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_Access.cs" />
-    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_Dynaset.cs" />
-    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_ParameterCollection.cs" />
-    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_ProjectSchedule.cs" />
-    <Compile Include="Core\Behavior\DB_SQLServer\cls_DB_ProjectSchedule2007.cs" />
-    <Compile Include="Core\Behavior\FjsSumaryEffortBehabior.cs" />
-    <Compile Include="Core\Behavior\mod_WMS_Declare.cs" />
-    <Compile Include="Core\Behavior\StringUtil.cs" />
     <Compile Include="Core\Extension\IEnumerableExtension.cs" />
+    <Compile Include="Core\Extension\IServiceCollectionExtension.cs" />
+    <Compile Include="Data\TaskRepository.cs" />
+    <Compile Include="Data\CustomFieldRepository.cs" />
+    <Compile Include="Data\PsiRepository.cs" />
     <Compile Include="Data\ProjectRepository.cs" />
+    <Compile Include="Entities\ProjectEntityType.cs" />
     <Compile Include="Entities\ProjectInfo.cs" />
-    <Compile Include="Entities\ReportActualDetail.cs" />
-    <Compile Include="Entities\Structs\subProjectPhaseInfo.cs" />
-    <Compile Include="Entities\Structs\subProjectInfo.cs" />
-    <Compile Include="Entities\Structs\subProjectStaffInfo.cs" />
     <Compile Include="Entities\Enum.cs" />
-    <Compile Include="Entities\Structs\Task2007Info.cs" />
+    <Compile Include="Entities\TaskInfo.cs" />
     <Compile Include="MappingProfile.cs" />
     <Compile Include="Model\ActualData.cs" />
-    <Compile Include="Model\ScreenModeEnum.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\ReportActualModel.cs" />
     <Compile Include="MySettings.cs" />

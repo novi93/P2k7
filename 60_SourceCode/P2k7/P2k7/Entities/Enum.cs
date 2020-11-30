@@ -61,4 +61,15 @@
         // Token: 0x0400087B RID: 2171
         Completed
     }
+    public enum LoginMode
+    {
+        WindowsAuth,
+        FormAuth
+    }
+        public enum ScreenModeEnum
+    {
+        Init ,
+        Header,
+        Deatail
+    }
 }

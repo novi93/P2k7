@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.VisualBasic.CompilerServices;
 using P2k7.Core.Behavior.DB_SQLServer;
-using P2k7.CustomfieldsWebSvc;
 using P2k7.Data;
+using P2k7.Entities;
 using P2k7.Entities.Enum;
 using P2k7.Entities.Structs;
 using P2k7.LookuptableWebSvc;
@@ -11,101 +11,38 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace P2k7.Core.Behavior
 {
     public class FjsSumaryEffortBehabior
     {
 
-        public FjsSumaryEffortBehabior(ProjectRepository repo)
+        public FjsSumaryEffortBehabior(ProjectRepository proJectRepo, CustomFieldRepository cfRepo)
         {
             SummaryDataSource = new DataSet();
-            Repo = repo;
+            this.ProJectRepo = proJectRepo;
+            this.CfRepo = cfRepo;
         }
         public DataSet SummaryDataSource { get; private set; }
         public bool SumManWrkItem { get; private set; } = true;
         public bool SumDevWrkItem { get; private set; } = true;
         public bool SumFixWrkItem { get; private set; } = true;
         public bool SumOtherWrkItem { get; private set; } = true;
-        public ProjectRepository Repo { get; }
+        public ProjectRepository ProJectRepo { get; }
+        public CustomFieldRepository CfRepo { get; }
 
         private void SettingListColumn()
         {
             this.SummaryDataSource = new DataSet();
-            DataTable dataTable = SummaryDataSource.Tables.Add("SubProject");
-            DataTable dataTable2 = SummaryDataSource.Tables.Add("Member");
-            DataTable dataTable3 = SummaryDataSource.Tables.Add("Phase");
-            //this.SubProjectGridView.ViewCaption = "Tổng kết từ " + Conversions.ToDate(this.StartDateItem.EditValue).ToString("yyyy/MM/dd") + " đến " + Conversions.ToDate(this.EndDateItem.EditValue).ToString("yyyy/MM/dd");
+            DataTable dataTable4 = SummaryDataSource.Tables.Add("Novi");
 
-            dataTable.Columns.Add("Sub project", typeof(string));
-            dataTable.Columns.Add("Baselined Effort", typeof(decimal));
-            dataTable.Columns.Add("Scheduled Effort", typeof(decimal));
-            dataTable.Columns.Add("Actual Effort", typeof(decimal));
-            dataTable.Columns.Add("Overtime Effort", typeof(decimal));
-            dataTable2.Columns.Add("Sub project", typeof(string));
-            dataTable2.Columns.Add("Account", typeof(string));
-            dataTable2.Columns.Add("Baselined", typeof(decimal));
-            dataTable2.Columns.Add("Actual", typeof(decimal));
-            dataTable2.Columns.Add("Overtime", typeof(decimal));
-            dataTable3.Columns.Add("Account", typeof(string));
-            dataTable3.Columns.Add("Phase", typeof(string));
-            dataTable3.Columns.Add("Baselined", typeof(decimal));
-            dataTable3.Columns.Add("Actual", typeof(decimal));
-            dataTable3.Columns.Add("Overtime", typeof(decimal));
-            dataTable3.Columns.Add("Sub project", typeof(string));
-            dataTable.Columns.Add("Id", typeof(string));
-            dataTable.Columns.Add("ParrentId", typeof(string));
-            SummaryDataSource.Relations.Add("DetailMember", dataTable.Columns["Sub project"], dataTable2.Columns["Sub project"]);
-            SummaryDataSource.Relations.Add("DetailPhases", new DataColumn[]
-            {
-                dataTable2.Columns["Sub project"],
-                dataTable2.Columns["Account"]
-            }, new DataColumn[]
-            {
-                dataTable3.Columns["Sub project"],
-                dataTable3.Columns["Account"]
-            });
-            //this.ResultList.DataSource = dataTable;
-            //this.ResultList.ForceInitialize();
-            //this.SubProjectGridView.Columns["Sub project"].Width = 200;
-            //this.SubProjectGridView.Columns["Sub project"].Fixed = FixedStyle.Left;
-            //this.SubProjectGridView.Columns["Sub project"].Summary.Add(SummaryItemType.Count, this.SubProjectGridView.Columns["Sub project"].FieldName);
-            //this.SubProjectGridView.Columns["Sub project"].ColumnEdit = cls_CM_Function.CreateMultiLineCellGridColumn();
-            //this.SubProjectGridView.Columns["Baselined Effort"].Width = 150;
-            //this.SubProjectGridView.Columns["Baselined Effort"].DisplayFormat.FormatType = FormatType.Numeric;
-            //this.SubProjectGridView.Columns["Baselined Effort"].DisplayFormat.FormatString = "#,##0.00";
-            //this.SubProjectGridView.Columns["Baselined Effort"].Summary.Add(SummaryItemType.Sum, this.SubProjectGridView.Columns["Baselined Effort"].FieldName);
-            //this.SubProjectGridView.Columns["Scheduled Effort"].Width = 150;
-            //this.SubProjectGridView.Columns["Scheduled Effort"].DisplayFormat.FormatType = FormatType.Numeric;
-            //this.SubProjectGridView.Columns["Scheduled Effort"].DisplayFormat.FormatString = "#,##0.00";
-            //this.SubProjectGridView.Columns["Scheduled Effort"].Summary.Add(SummaryItemType.Sum, this.SubProjectGridView.Columns["Scheduled Effort"].FieldName);
-            //this.SubProjectGridView.Columns["Actual Effort"].Width = 150;
-            //this.SubProjectGridView.Columns["Actual Effort"].DisplayFormat.FormatType = FormatType.Numeric;
-            //this.SubProjectGridView.Columns["Actual Effort"].DisplayFormat.FormatString = "#,##0.00";
-            //this.SubProjectGridView.Columns["Actual Effort"].Summary.Add(SummaryItemType.Sum, this.SubProjectGridView.Columns["Actual Effort"].FieldName);
-            //this.SubProjectGridView.Columns["Overtime Effort"].Width = 150;
-            //this.SubProjectGridView.Columns["Overtime Effort"].DisplayFormat.FormatType = FormatType.Numeric;
-            //this.SubProjectGridView.Columns["Overtime Effort"].DisplayFormat.FormatString = "#,##0.00";
-            //this.SubProjectGridView.Columns["Overtime Effort"].Summary.Add(SummaryItemType.Sum, this.SubProjectGridView.Columns["Overtime Effort"].FieldName);
-            //this.SubProjectGridView.OptionsCustomization.AllowRowSizing = true;
-            //this.SubProjectGridView.OptionsView.RowAutoHeight = true;
-            //this.SubProjectGridView.OptionsView.ShowFooter = true;
-            //this.SubProjectGridView.OptionsView.ShowGroupPanel = false;
-            //this.SubProjectGridView.OptionsBehavior.ReadOnly = true;
-            //this.SubProjectGridView.OptionsDetail.ShowDetailTabs = false;
-            //this.SubProjectGridView.OptionsDetail.AllowExpandEmptyDetails = true;
-            //this.MemberGridView.OptionsView.ShowGroupPanel = false;
-            //this.MemberGridView.OptionsDetail.ShowDetailTabs = false;
-            //this.MemberGridView.OptionsBehavior.ReadOnly = true;
-            //this.PhaseGridView.OptionsView.ShowGroupPanel = false;
-            //this.PhaseGridView.OptionsDetail.ShowDetailTabs = false;
-            //this.PhaseGridView.OptionsBehavior.ReadOnly = true;
-            //this.MemberGridView.PopulateColumns(dataTable2);
-            //this.PhaseGridView.PopulateColumns(dataTable3);
-            //this.MemberGridView.Columns["Sub project"].Visible = false;
-            //this.PhaseGridView.Columns["Account"].Visible = false;
-            //this.PhaseGridView.Columns["Sub project"].Visible = false;
+            dataTable4.Columns.Add("Id", typeof(string));
+            dataTable4.Columns.Add("ParentId", typeof(string));
+            dataTable4.Columns.Add("Name", typeof(string));
+            dataTable4.Columns.Add("DD", typeof(decimal));
+            dataTable4.Columns.Add("PG", typeof(decimal));
+            dataTable4.Columns.Add("SUM", typeof(decimal));
         }
         public List<subProjectInfo> SummaryBySubProject(List<Task2007Info> taskList,
                                                         bool countManagement,
@@ -373,15 +310,6 @@ namespace P2k7.Core.Behavior
                             bool flag8 = Operators.ConditionalCompareObjectEqual(subProjectPhaseInfo2.Phase, aRow["Phase"], false);
                             if (flag8)
                             {
-                                //ptr = ref subProjectPhaseInfo2.ActualEffort;
-                                //subProjectPhaseInfo2.ActualEffort = Conversions.ToDecimal(Operators.AddObject(ptr, Operators.DivideObject(aRow["ActualWork"], 60000m)));
-                                //ptr = ref subProjectPhaseInfo2.BaselinedEffort;
-                                //subProjectPhaseInfo2.BaselinedEffort = Conversions.ToDecimal(Operators.AddObject(ptr, Operators.DivideObject(aRow["BaselineWork"], 60000m)));
-                                //ptr = ref subProjectPhaseInfo2.OvertimeEffort;
-                                //subProjectPhaseInfo2.OvertimeEffort = Conversions.ToDecimal(Operators.AddObject(ptr, Operators.DivideObject(aRow["ActualOvertimeWork"], 60000m)));
-                                //ptr = ref subProjectPhaseInfo2.ScheduleEffort;
-                                //subProjectPhaseInfo2.ScheduleEffort = Conversions.ToDecimal(Operators.AddObject(ptr, Operators.DivideObject(aRow["Work"], 60000m)));
-                                //subProjectStaffInfo.PhaseInfo[l] = subProjectPhaseInfo2;
                                 ptr = subProjectPhaseInfo2.ActualEffort;
                                 subProjectPhaseInfo2.ActualEffort = Conversions.ToDecimal(Operators.AddObject(ptr, Operators.DivideObject(aRow["ActualWork"], 60000m)));
                                 ptr = subProjectPhaseInfo2.BaselinedEffort;
@@ -402,74 +330,41 @@ namespace P2k7.Core.Behavior
         }
 
         // Token: 0x06002905 RID: 10501 RVA: 0x0015B930 File Offset: 0x00159B30
-        public DataSet SummaryEffort_ItemClick(cls_CM_ProjectSchedule2007 _selectedSchedule,
+        public IEnumerable SummaryEffort_ItemClick(cls_CM_ProjectSchedule2007 _selectedSchedule,
                                              DateTime StartDate,
                                              DateTime ToDate)
         {
-            
             SettingListColumn();
-            this.SummaryDataSource.Tables[2].Rows.Clear();
-            this.SummaryDataSource.Tables[1].Rows.Clear();
             this.SummaryDataSource.Tables[0].Rows.Clear();
-            var taskSummaryTimephasedData = GetTaskSummaryTimephasedData(_selectedSchedule,
-                                                                                                    StartDate,
-                                                                                                    ToDate,
-                                                                                                    DataStoreEnum.PublishedStore);
-            var list = this.SummaryBySubProject(taskSummaryTimephasedData,
-                                                this.SumManWrkItem,
-                                                this.SumDevWrkItem,
-                                                this.SumFixWrkItem,
-                                                this.SumOtherWrkItem);
-            checked
+
+            // list task trong ky han
+            var taskSummaryTimephasedData = GetTaskSummaryTimephasedDataNew(_selectedSchedule,
+                                                                         StartDate,
+                                                                         ToDate,
+                                                                         DataStoreEnum.PublishedStore);
+
+            var rs = taskSummaryTimephasedData.Select(x =>
+            new
             {
-                int num = list.Count - 1;
-                for (int i = 0; i <= num; i++)
-                {
-                    DataRow dataRow = this.SummaryDataSource.Tables[0].Rows.Add(new object[0]);
-                    subProjectInfo subProjectInfo = list[i];
-                    dataRow["Sub project"] = subProjectInfo.SubProjectID + "\r\n" + subProjectInfo.SubProjectName;
-                    dataRow["Baselined Effort"] = Math.Round(subProjectInfo.BaselinedEffort, 2);
-                    dataRow["Scheduled Effort"] = Math.Round(subProjectInfo.ScheduleEffort, 2);
-                    dataRow["Actual Effort"] = Math.Round(subProjectInfo.ActualEffort, 2);
-                    dataRow["Overtime Effort"] = Math.Round(subProjectInfo.OvertimeEffort, 2);
-                    dataRow["Id"] = subProjectInfo.SubProjectID;
-                    dataRow["ParrentId"] = _selectedSchedule.ID;
-                    bool flag = subProjectInfo.StaffInfo.Count > 0;
-                    if (flag)
-                    {
-                        int num2 = subProjectInfo.StaffInfo.Count - 1;
-                        for (int j = 0; j <= num2; j++)
-                        {
-                            DataRow dataRow2 = this.SummaryDataSource.Tables[1].Rows.Add(new object[0]);
-                            object obj = subProjectInfo.StaffInfo[j];
-                            subProjectStaffInfo subProjectStaffInfo = (obj != null) ? ((subProjectStaffInfo)obj) : default(subProjectStaffInfo);
-                            dataRow2["Actual"] = Math.Round(subProjectStaffInfo.ActualEffort, 2);
-                            dataRow2["Baselined"] = Math.Round(subProjectStaffInfo.BaselinedEffort, 2);
-                            dataRow2["Overtime"] = Math.Round(subProjectStaffInfo.OvertimeEffort, 2);
-                            dataRow2["Account"] = subProjectStaffInfo.ResourceAccount;
-                            dataRow2["Sub project"] = RuntimeHelpers.GetObjectValue(dataRow[0]);
-                            int num3 = subProjectStaffInfo.PhaseInfo.Count - 1;
-                            for (int k = 0; k <= num3; k++)
-                            {
-                                object obj2 = subProjectStaffInfo.PhaseInfo[k];
-                                subProjectPhaseInfo subProjectPhaseInfo = (obj2 != null) ? ((subProjectPhaseInfo)obj2) : default(subProjectPhaseInfo);
-                                DataRow dataRow3 = this.SummaryDataSource.Tables[2].Rows.Add(new object[]
-                                {
-                                    subProjectStaffInfo.ResourceAccount,
-                                    Enum.GetName(typeof(TaskPhase), subProjectPhaseInfo.Phase),
-                                    Math.Round(subProjectPhaseInfo.BaselinedEffort, 2),
-                                    Math.Round(subProjectPhaseInfo.ActualEffort, 2),
-                                    Math.Round(subProjectPhaseInfo.OvertimeEffort, 2),
-                                    dataRow[0]
-                                });
-                            }
-                        }
-                    }
-                }
-                //this.SubProjectGridView.ViewCaption = "Tổng kết từ " + Conversions.ToDate(this.StartDateItem.EditValue).ToString("yyyy/MM/dd") + " đến " + Conversions.ToDate(this.EndDateItem.EditValue).ToString("yyyy/MM/dd");
-                GC.Collect();
-            }
-            return SummaryDataSource;
+                Id = x.Task.TASK_UID.ToString(),
+                ParentId = (x.Task.TASK_UID == x.Task.TASK_PARENT_UID) ? "0" : x.Task.TASK_PARENT_UID.ToString(),
+                Name = x.Task.TASK_NAME,
+                TaskClass = x.TaskClass.LT_VALUE_TEXT,
+                TaskClassName = x.TaskClass.LT_VALUE_DESC,
+                DD = 16m,
+                PG = 24m,
+                isSubPrj = !(x.Task.TASK_UID == x.Task.TASK_PARENT_UID)
+            });
+
+            //rs.Add(new ActualData()
+            //{
+            //    Id = x.ParentId,
+            //    ParentId = "0",
+            //    Name = string.Concat("★★★　", _selectedSchedule.Name),
+            //    DD = arr.Sum(e => e.DD),
+            //    PG = arr.Sum(e => e.PG)
+            //});
+            return rs;
         }
 
         public List<cls_CM_ProjectSchedule2007> LoadProjectScheduleList(cls_CM_Project project)
@@ -484,8 +379,7 @@ namespace P2k7.Core.Behavior
                                                          false) == 0;
                     if (!flag2)
                     {
-                        List<string> list = new List<string>();
-                        list = cls_CM_ProjectSchedule2007.GetScheduleList(project.ScheduleIDList);
+                        List<string> list = cls_CM_ProjectSchedule2007.GetScheduleList(project.ScheduleIDList);
                         int num = list.Count - 1;
                         for (int i = 0; i <= num; i++)
                         {
@@ -495,39 +389,6 @@ namespace P2k7.Core.Behavior
                             if (!flag3)
                             {
                                 return projectScheduleList;
-                                //cls_CM_ProjectSchedule = projectScheduleList[0];
-                                //cls_CM_ComboItem item = new cls_CM_ComboItem(cls_CM_ProjectSchedule, cls_CM_ProjectSchedule.Name);
-                                //bool flag4 = false;
-                                //try
-                                //{
-                                //    foreach (object obj in ScheduleListItemCombo.Items)
-                                //    {
-                                //        cls_CM_ComboItem cls_CM_ComboItem = (cls_CM_ComboItem)obj;
-                                //        bool flag5 = Operators.CompareString(cls_CM_ComboItem.Text, cls_CM_ProjectSchedule.Name, false) == 0;
-                                //        if (flag5)
-                                //        {
-                                //            flag4 = true;
-                                //            break;
-                                //        }
-                                //    }
-                                //}
-                                //finally
-                                //{
-                                //    //IEnumerator enumerator;
-                                //    //if (enumerator is IDisposable)
-                                //    //{
-                                //    //    (enumerator as IDisposable).Dispose();
-                                //    //}
-                                //    if (this is IDisposable)
-                                //    {
-                                //        (this as IDisposable).Dispose();
-                                //    }
-                                //}
-                                //bool flag6 = !flag4;
-                                //if (flag6)
-                                //{
-                                //    ScheduleListItemCombo.Items.Add(item);
-                                //}
                             }
                         }
                     }
@@ -540,27 +401,24 @@ namespace P2k7.Core.Behavior
         {
             List<Task2007Info> list = new List<Task2007Info>();
             cls_CM_Function.OverrideCertificateValidation();
-            
+
             // truncate time
             StartDate = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, 0, 0, 0);
             EndDate = new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, 23, 59, 59);
 
-            // todo dummy for tesst
-            //var scheduleId = new Guid("59f00468-145a-4d16-afa1-42e415237bf3");
-
             // get raw data
-            var projectDataSet = Repo.project.ReadProjectEntities(schedule.ID, 74, whereToGet);
-            var customFieldDS = Repo.customFields.ReadCustomFields("", false);
-            var lookupTableDataSet= Repo.lookupTable.ReadLookupTables("", false, 0);
-            var resourceWebSvc = Repo.resource;
-            var resourceDS = resourceWebSvc.ReadResources("", false);
+            var projectDataSet = ProJectRepo.project.ReadProjectEntities(schedule.ID, 74, whereToGet);
+            var customFieldDS = ProJectRepo.customFields.ReadCustomFields("", false);
+            var lookupTableDataSet = ProJectRepo.lookupTable.ReadLookupTables("", false, 0);
+            var resourceDS = ProJectRepo.resource.ReadResources("", false);
 
             // get by out param:   fixbugWBS(FIXCUSDEF) devWBS(SD) manWBS(PM) | 1 = YES , -1 = NO
             cls_CM_ProjectSchedule2007.GetWBSTaskClass(projectDataSet,
                                                        out string fixbugWBS,
                                                        out string devWBS,
                                                        out string manWBS);
-            
+
+
             // get by out param :   list of subprj (NAME, WBS)
             cls_CM_ProjectSchedule2007.GetSubPrjListWBS(projectDataSet,
                                                         out List<string> subPrjWBS,
@@ -654,8 +512,8 @@ namespace P2k7.Core.Behavior
                 // dispose
             }
             return list;
-;
+            ;
         }
-
+        
     } // classs
 } // namespace

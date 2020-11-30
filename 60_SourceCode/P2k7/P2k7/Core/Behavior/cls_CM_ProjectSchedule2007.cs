@@ -1682,6 +1682,21 @@ namespace P2k7.Core.Behavior
                 }
             }
         }
+                /// <summary>
+        /// Get Task WBS by ref param  
+        /// </summary>
+        /// <param name="project">project data</param>
+        /// <param name="FixBugTaskWBS">taskClass = FIXCUSDEF</param>
+        /// <param name="DevelopmentTaskWBS">taskClass = SD</param>
+        /// <param name="ManagementTaskWBS">taskClass = PM</param>
+        /// <remarks> "1" : YES ; "-1" : NO</remarks>
+        public static void GetWBSTaskClassDev(ProjectDataSet project, out string FixBugTaskWBS, out string DevelopmentTaskWBS, out string ManagementTaskWBS)
+        {
+                        FixBugTaskWBS = "-1";
+            DevelopmentTaskWBS = "-1";
+            ManagementTaskWBS = "-1";
+           return ;
+        }
 
         /// <summary>
         /// GetTaskPart

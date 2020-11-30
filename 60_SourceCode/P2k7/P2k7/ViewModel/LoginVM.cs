@@ -35,20 +35,6 @@ namespace P2k7.ViewModel
             }
             mySettings.Save();
 
-            // Set the global variables
-            //TODO 
-            //Program.ProjectServerUrl = mySettings.ProjectServerURL;
-            //Program.UserName = mySettings.UserName;
-            //Program.Password = mySettings.PassWord;
-            //Program.IsWindowsAuth = mySettings.IsWindowsAuth;
-            //if (Model.IsWindowsAuth)
-            //{
-            //    Program.WindowsPort = mySettings.WindowsPort;
-            //}
-            //else
-            //{
-            //    Program.FormsPort = mySettings.FormsPort;
-            //}
         }
 
     }
