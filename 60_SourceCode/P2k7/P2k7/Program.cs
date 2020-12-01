@@ -29,7 +29,8 @@ namespace P2k7
             var services = new ServiceCollection();
             ConfigureServices(services);
 
-            objmutex = new Mutex(true, AppName, out isNew);
+            objmutex = new Mutex(true, AppName, out isNew)
+                ;
             if (isNew)
             {
                 using (ServiceProvider serviceProvider = services.BuildServiceProvider())

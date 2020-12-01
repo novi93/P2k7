@@ -124,14 +124,16 @@ namespace P2k7.Data
                 ParentId = (x.Task.TASK_UID == x.Task.TASK_PARENT_UID) ? "0" : x.Task.TASK_PARENT_UID.ToString(),
                 Name = x.Task.TASK_NAME,
                 TaskClass = x.TaskClass == null ? "" : x.TaskClass.LT_VALUE_TEXT,
-                TaskClassName = x.TaskClass == null ? "" : x.TaskClass.LT_VALUE_DESC
+                TaskClassName = x.TaskClass == null ? "" : x.TaskClass.LT_VALUE_DESC,
+                Acctual  = Convert.ToDecimal(x.Task.TASK_ACT_WORK)/60000m
                 //DD = 16m,
                 //PG = 24m,
                 //isSubPrj = !(x.TaskClass == null ? false : (x.TaskClass.LT_VALUE_TEXT == "SUB_PRJ"))
             });
 
             var rs2 = rs.ToList();
-
+            
+            var a = project.ReadProject(Guid.Empty, DataStoreEnum.PublishedStore);
             return rs.ToList();
         }
     }

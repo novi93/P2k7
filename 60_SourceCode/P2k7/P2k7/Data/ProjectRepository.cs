@@ -23,6 +23,7 @@ namespace P2k7.Data
         public ProjectDataSet ReadProject(Guid projectGuid, DataStoreEnum dataStoreEnum)
         {
             return project.ReadProject(projectGuid, (ProjectWebSvc.DataStoreEnum)dataStoreEnum);
+             
         }
 
         /// <summary>
