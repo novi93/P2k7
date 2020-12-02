@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>ftp://172.16.7.102/Measure.App/P2k7/|publish\</PublishUrlHistory>
-    <InstallUrlHistory />
+    <InstallUrlHistory>http://172.16.7.102/Measure.p2k7/|http://172.16.7.102/Measure.p2k7/p2k7/|http://172.16.7.102/Measure.App/p2k7/|http://172.16.7.102/Measure.App/|http://172.16.7.102/Measure.App/P2k7/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
