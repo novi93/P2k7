@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="P2k7.Api.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="P2k7_Api_AdminWebSvc_Admin" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/admin.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_ArchiveWebSvc_Archive" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/archive.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_CalendarWebSvc_Calendar" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/calendar.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_CustomfieldsWebSvc_CustomFields" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/customfields.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_EventsWebSvc_Events" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/events.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_LoginformsWebSvc_LoginForms" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/loginforms.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_LoginwindowsWebSvc_LoginWindows" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/loginwindows.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_LookuptableWebSvc_LookupTable" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/Lookuptable.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_ProjectWebSvc_Project" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/project.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_QueuesystemWebSvc_QueueSystem" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/queuesystem.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_ResourceWebSvc_Resource" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/resource.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_SecurityWebSvc_Security" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/security.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_StatusingWebSvc_Statusing" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/statusing.asmx</Value>
+    </Setting>
+    <Setting Name="P2k7_Api_TimesheetWebSvc_TimeSheet" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://projects.fujinet.vn/_vti_bin/psi/timesheet.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

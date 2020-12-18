@@ -1,0 +1,171 @@
+﻿<Window
+    x:Class="iProject.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:iProject"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  data template used for the dialogs example, defines a View for a ViewModel of type DateTime  -->
+            <DataTemplate DataType="{x:Type system:DateTime}">
+                <StackPanel Margin="16">
+                    <TextBlock Text="England win the World Cup:" />
+                    <TextBlock Margin="0,8,0,0" Text="{Binding}" />
+                    <TextBlock Margin="0,8,0,0" Text="You will never see that again." />
+                    <Button
+                        Margin="0,8,0,0"
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        Content="AWESOME"
+                        IsDefault="True"
+                        Style="{DynamicResource MaterialDesignFlatButton}" />
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <materialDesign:DialogHost
+        DialogTheme="Inherit"
+        Identifier="RootDialog"
+        SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="220">
+                    <ToggleButton
+                        Margin="16"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Top"
+                        IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
+                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+
+                    <TextBox
+                        x:Name="MenuItemsSearchBox"
+                        Width="200"
+                        Margin="16,4"
+                        materialDesign:HintAssist.Hint="Search"
+                        materialDesign:HintAssist.IsFloating="True"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:TextFieldAssist.HasOutlinedTextField="True"
+                        materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
+                        DockPanel.Dock="Top"
+                        Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <ListBox
+                        x:Name="MenuItemsListBox"
+                        Margin="0,16,0,16"
+                        AutomationProperties.Name="MenuPagesListBox"
+                        ItemsSource="{Binding MenuItems}"
+                        PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"
+                        SelectedIndex="{Binding SelectedIndex}"
+                        SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.Resources>
+                            <Style BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" TargetType="ScrollBar" />
+                        </ListBox.Resources>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="domain:NoviMenuItem">
+                                <TextBlock
+                                    Margin="32,0,32,0"
+                                    AutomationProperties.AutomationId="MenuItemPage"
+                                    Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+            <!--  main  -->
+            <DockPanel>
+                <!--  header  -->
+                <materialDesign:ColorZone
+                    Padding="16"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    DockPanel.Dock="Top"
+                    Mode="PrimaryMid">
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton
+                                x:Name="MenuToggleButton"
+                                AutomationProperties.Name="HamburgerToggleButton"
+                                Click="MenuToggleButton_OnClick"
+                                IsChecked="False"
+                                Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                        </StackPanel>
+
+                        <materialDesign:PopupBox
+                            DockPanel.Dock="Right"
+                            PlacementMode="BottomAndAlignRightEdges"
+                            StaysOpen="False">
+                            <StackPanel>
+                                <StackPanel
+                                    Margin="10"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <TextBlock Margin="0,0,10,0" Text="Light" />
+                                    <ToggleButton x:Name="DarkModeToggleButton" Click="MenuDarkModeButton_Click" />
+                                    <TextBlock Margin="10,0,0,0" Text="Dark" />
+                                </StackPanel>
+
+                                <Separator />
+
+                                <Button Click="MenuPopupButton_OnClick" Content="Hello World" />
+
+                                <Button Click="MenuPopupButton_OnClick" Content="Nice Popup" />
+
+                                <Button Content="Can't Touch This" IsEnabled="False" />
+
+                                <Separator />
+
+                                <Button Click="MenuPopupButton_OnClick" Content="Goodbye" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            AutomationProperties.Name="Material Design In XAML Toolkit"
+                            FontSize="22"
+                            Text="Material Design In XAML Toolkit" />
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                <!--  body  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  content  -->
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Padding="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.MarginRequirement}"
+                        materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
+                        HorizontalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
+                        VerticalScrollBarVisibility="{Binding ElementName=MenuItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}">
+                        <!--  content  -->
+                        <ContentControl Content="{Binding SelectedItem.Content, UpdateSourceTrigger=PropertyChanged}" />
+                    </ScrollViewer>
+                    <materialDesign:Snackbar
+                        x:Name="MainSnackbar"
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
+                        MessageQueue="{materialDesign:MessageQueue}" />
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
+</Window>
